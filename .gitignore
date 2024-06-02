@@ -1,0 +1,10 @@
+.idea
+.idea/
+.vscode
+upload
+*.exe
+*.db
+build
+*.db-journal
+logs
+data

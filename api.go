@@ -305,7 +305,7 @@ func loopFetchTask(taskID string) (bool, *common.RelayError) {
 	if oldTask.Status.IsDone() {
 		return true, nil
 	}
-	timeoutAt := time.Now().Add(-time.Duration(common.TimeOut) * time.Second).Unix()
+	timeoutAt := time.Now().Add(-time.Duration(common.ChatTimeOut) * time.Second).Unix()
 	if oldTask.SubmitTime > 0 && timeoutAt > oldTask.SubmitTime {
 		err = oldTask.TaskFailed("time out")
 		return true, common.WrapperErr(fmt.Errorf("task %s time out", taskID), common.ErrCodeInternalError, 500)

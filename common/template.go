@@ -17,11 +17,11 @@ func InitTemplate() {
 	// load template file
 	Templates = make(map[string]*template.Template)
 	// register template
-	if TemplateDir == "" {
+	if ChatTemplateDir == "" {
 		Logger.Warnf("InitTemplate empty TemplateDir")
 		return
 	}
-	err := filepath.Walk(TemplateDir, func(path string, info os.FileInfo, err error) error {
+	err := filepath.Walk(ChatTemplateDir, func(path string, info os.FileInfo, err error) error {
 		if info.IsDir() {
 			return nil
 		}

@@ -18,13 +18,13 @@ var Port = GetOrDefaultString("PORT", "8000")
 var SQLitePath = GetOrDefaultString("SQLITE_PATH", "api.db?_busy_timeout=5000")
 
 var Proxy = GetOrDefaultString("PROXY", "")
-var TemplateDir = GetOrDefaultString("TEMPLATE_DIR", "./template")
+var ChatTemplateDir = GetOrDefaultString("CHAT_TEMPLATE_DIR", "./template")
 
 var BaseUrl = GetOrDefaultString("BASE_URL", "https://studio-api.suno.ai")
 var SessionID = GetOrDefaultString("SESSION_ID", "")
 var COOKIE = GetOrDefaultString("COOKIE", "")
-var SunoChatOpenaiModel = GetOrDefaultString("SUNO_CHAT_OPENAI_MODEL", "gpt-4o")
-var SunoChatOpenaiApiBASE = GetOrDefaultString("SUNO_CHAT_OPENAI_BASE", "https://api.openai.com")
-var SunoChatOpenaiApiKey = GetOrDefaultString("SUNO_CHAT_OPENAI_KEY", "")
+var ChatOpenaiModel = GetOrDefaultString("CHAT_OPENAI_MODEL", "gpt-4o")
+var ChatOpenaiApiBASE = GetOrDefaultString("CHAT_OPENAI_BASE", "https://api.openai.com")
+var ChatOpenaiApiKey = GetOrDefaultString("CHAT_OPENAI_KEY", "")
 
-var TimeOut = GetOrDefault("TIME_OUT", 600) // 任务超时时间
+var ChatTimeOut = GetOrDefault("CHAT_TIME_OUT", 600) // 任务超时时间

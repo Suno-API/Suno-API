@@ -2,15 +2,14 @@ version: '3.4'
 
 services:
   sunoapi:
-    image: xyfacai/sunoapi:latest
+    image: sunoapigo/suno-api:latest
     container_name: sunoapi
-    restart: always  
-    network_mode: host
+    restart: always
+    ports:
+      - "8000:8000"
     volumes:
-      - ./data:/data
       - ./logs:/logs
-      - ./pprof:/pprof:rw
-      - ./template:/template:rw
+      - ./template:/template
     environment:
       - PORT=8000
       - SQL_DSN=root:123456@tcp(localhost:3306)/sunoapi
@@ -23,5 +22,3 @@ services:
       - SUNO_CHAT_OPENAI_BASE=https://one-api.bltcy.top
       - SUNO_CHAT_OPENAI_KEY=sk-
 
-networks:
-  internal:      

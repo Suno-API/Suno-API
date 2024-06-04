@@ -161,10 +161,10 @@ func ChatCompletions(c *gin.Context) {
 }
 
 func checkChatConfig() error {
-	if common.SunoChatOpenaiApiBASE == "" {
+	if common.ChatOpenaiApiBASE == "" {
 		return fmt.Errorf("SUNO_CHAT_OPENAI_BASE is empty")
 	}
-	if common.SunoChatOpenaiApiKey == "" {
+	if common.ChatOpenaiApiKey == "" {
 		return fmt.Errorf("SUNO_CHAT_OPENAI_KEY is empty")
 	}
 	_, ok := common.Templates["suno_chat_resp"]
@@ -177,7 +177,7 @@ func checkChatConfig() error {
 func doTools(requestData GeneralOpenAIRequest) (funcName string, res map[string]interface{}, opErr *common.RelayError) {
 
 	// do req
-	requestData.Model = common.SunoChatOpenaiModel
+	requestData.Model = common.ChatOpenaiModel
 
 	requestData.Tools = defaultToolsCalls
 	requestData.ToolChoice = "required"
@@ -310,12 +310,12 @@ var defaultToolsCalls = []Tool{
 }
 
 func doOpenAIRequest(requestBody io.Reader, isStream bool) (*http.Response, *common.RelayError) {
-	fullRequestURL := fmt.Sprintf("%s/v1/chat/completions", common.SunoChatOpenaiApiBASE)
+	fullRequestURL := fmt.Sprintf("%s/v1/chat/completions", common.ChatOpenaiApiBASE)
 	req, err := http.NewRequest(http.MethodPost, fullRequestURL, requestBody)
 	if err != nil {
 		return nil, common.WrapperErr(err, "resp_body_null", http.StatusInternalServerError)
 	}
-	req.Header.Set("Authorization", "Bearer "+common.SunoChatOpenaiApiKey)
+	req.Header.Set("Authorization", "Bearer "+common.ChatOpenaiApiKey)
 	req.Header.Set("Content-Type", "application/json")
 	if isStream {
 		req.Header.Set("Accept", "text/event-stream")

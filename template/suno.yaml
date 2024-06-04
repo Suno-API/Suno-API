@@ -12,8 +12,8 @@ suno_chat_resp: |
   {{ $first.Metadata.Prompt }}
   
   {{ range $i, $v := .Data }}
-  **版本ID：** {{$v.ID}}
-  **音乐时长：** {{$v.Metadata.Duration}}秒
+  **版本ID： ** {{$v.ID}}
+  **音乐时长： ** {{$v.Metadata.Duration}}秒
   **风格：   ** {{$v.Metadata.Tags}}
   **资源链接：**
   - 🖼 封面: ![封面]({{$v.ImageURL}})

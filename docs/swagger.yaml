@@ -1,0 +1,190 @@
+definitions:
+  ginplus.DataResult:
+    properties:
+      code:
+        type: string
+      data: {}
+      message:
+        type: string
+    type: object
+  main.FetchReq:
+    properties:
+      action:
+        type: string
+      ids:
+        items:
+          type: string
+        type: array
+    type: object
+  main.SubmitGenLyricsReq:
+    properties:
+      prompt:
+        type: string
+    type: object
+  main.SubmitGenSongReq:
+    properties:
+      continue_at:
+        type: number
+      continue_clip_id:
+        type: string
+      gpt_description_prompt:
+        type: string
+      make_instrumental:
+        type: boolean
+      mv:
+        type: string
+      prompt:
+        type: string
+      tags:
+        type: string
+      task_id:
+        type: string
+      title:
+        type: string
+    type: object
+  po.Task:
+    properties:
+      action:
+        description: 任务类型, song, lyrics, description-mode
+        type: string
+      created_at:
+        type: string
+      data: {}
+      fail_reason:
+        type: string
+      finish_time:
+        type: integer
+      id:
+        type: integer
+      search_item:
+        description: Progress   string     `json:"progress" gorm:"type:varchar(20);index"`
+        type: string
+      start_time:
+        type: integer
+      status:
+        allOf:
+        - $ref: '#/definitions/po.TaskStatus'
+        description: 任务状态, submitted, queueing, processing, success, failed
+      submit_time:
+        type: integer
+      task_id:
+        description: 第三方id，不一定有
+        type: string
+      updated_at:
+        type: string
+    type: object
+  po.TaskStatus:
+    enum:
+    - NOT_START
+    type: string
+    x-enum-varnames:
+    - TaskStatusNotStart
+info:
+  contact: {}
+paths:
+  /api/fetch:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: fetch task ids
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/main.FetchReq'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: song tasks
+          schema:
+            allOf:
+            - $ref: '#/definitions/ginplus.DataResult'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/po.Task'
+                  type: array
+              type: object
+      summary: Fetch task
+      tags:
+      - suno
+  /api/fetch/{id}:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: fetch single task by id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: song task
+          schema:
+            allOf:
+            - $ref: '#/definitions/ginplus.DataResult'
+            - properties:
+                data:
+                  $ref: '#/definitions/po.Task'
+              type: object
+      summary: Fetch task by id
+      tags:
+      - suno
+  /api/submit/lyrics:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: sumbmit generate lyrics
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/main.SubmitGenLyricsReq'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: task_id
+          schema:
+            allOf:
+            - $ref: '#/definitions/ginplus.DataResult'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: Submit Suno lyrics task
+      tags:
+      - suno
+  /api/submit/music:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: sumbmit generate song
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/main.SubmitGenSongReq'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: task_id
+          schema:
+            allOf:
+            - $ref: '#/definitions/ginplus.DataResult'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: Submit Suno song task
+      tags:
+      - suno
+swagger: "2.0"

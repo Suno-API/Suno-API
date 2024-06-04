@@ -33,10 +33,9 @@ func (status TaskStatus) IsDone() bool {
 // Task 任务, 用于记录任务的执行情况，用于轮询任务的执行情况
 type Task struct {
 	BaseModel
-	TaskID     string     `json:"task_id" gorm:"type:varchar(50);index"`  // 第三方id，不一定有
-	Platform   string     `json:"platform" gorm:"type:varchar(30);index"` // 平台
-	Action     string     `json:"action" gorm:"type:varchar(40);index"`   // 任务类型, song, lyrics, description-mode
-	Status     TaskStatus `json:"status" gorm:"type:varchar(20);index"`   // 任务状态, submitted, queueing, processing, success, failed
+	TaskID     string     `json:"task_id" gorm:"type:varchar(50);index"` // 第三方id，不一定有
+	Action     string     `json:"action" gorm:"type:varchar(40);index"`  // 任务类型, song, lyrics, description-mode
+	Status     TaskStatus `json:"status" gorm:"type:varchar(20);index"`  // 任务状态, submitted, queueing, processing, success, failed
 	FailReason string     `json:"fail_reason"`
 	SubmitTime int64      `json:"submit_time" gorm:"index"`
 	StartTime  int64      `json:"start_time" gorm:"index"`
@@ -49,9 +48,8 @@ type Task struct {
 type TaskWithData[T TaskData] struct {
 	BaseModel
 	TaskID     string     `json:"task_id" gorm:"type:varchar(50);index"`
-	Platform   string     `json:"platform" gorm:"type:varchar(30);index"` // 平台
-	Action     string     `json:"action" gorm:"type:varchar(40);index"`   // 任务类型, song, lyrics, description-mode
-	Status     TaskStatus `json:"status" gorm:"type:varchar(20);index"`   // 任务状态, submitted, queueing, processing, success, failed
+	Action     string     `json:"action" gorm:"type:varchar(40);index"` // 任务类型, song, lyrics, description-mode
+	Status     TaskStatus `json:"status" gorm:"type:varchar(20);index"` // 任务状态, submitted, queueing, processing, success, failed
 	FailReason string     `json:"fail_reason"`
 	SubmitTime int64      `json:"submit_time" gorm:"index"`
 	StartTime  int64      `json:"start_time" gorm:"index"`

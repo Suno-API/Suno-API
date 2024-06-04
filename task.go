@@ -31,7 +31,7 @@ func startTaskWorker() {
 							return false, relayErr
 						}
 						if done {
-							common.Logger.Named(Service.Name()).Infow("任务完成", "task", t.ID)
+							common.Logger.Infow("任务完成", "task", t.ID)
 							return true, nil
 						}
 						return false, nil

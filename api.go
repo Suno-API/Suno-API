@@ -56,6 +56,32 @@ var handles = map[string]func(reqBody []byte) (taskID string, relayErr *common.R
 	po.TaskActionLyrics: submitGenLyrics,
 }
 
+// @Summary Submit Suno song task
+// @Schemes
+// @Description
+// @Tags suno
+// @Accept json
+// @Produce json
+// @Param body body SubmitGenSongReq true "sumbmit generate song"
+// @Success 200 {object} ginplus.DataResult{data=string} "task_id"
+// @Router /api/submit/music [post]
+func SubmitGenSong(c *gin.Context) {
+	Submit(c)
+}
+
+// @Summary Submit Suno lyrics task
+// @Schemes
+// @Description
+// @Tags suno
+// @Accept json
+// @Produce json
+// @Param body body SubmitGenLyricsReq true "sumbmit generate lyrics"
+// @Success 200 {object} ginplus.DataResult{data=string} "task_id"
+// @Router /api/submit/lyrics [post]
+func SubmitGenLyrics(c *gin.Context) {
+	Submit(c)
+}
+
 func Submit(c *gin.Context) {
 	action := c.Param("action")
 	action = strings.ToUpper(action)
@@ -159,9 +185,8 @@ func submitGenSong(reqBody []byte) (taskID string, relayErr *common.RelayError) 
 	}
 	var tasks []po.TaskWithData[po.SunoSongs]
 	task := po.TaskWithData[po.SunoSongs]{
-		Platform: Service.Name(),
-		Action:   po.TaskActionMusic,
-		TaskID:   common.GetUUID(),
+		Action: po.TaskActionMusic,
+		TaskID: common.GetUUID(),
 	}
 	task.Data = sunoResp.Clips
 	tasks = append(tasks, task)
@@ -268,7 +293,6 @@ func submitGenLyrics(reqBody []byte) (taskID string, relayErr *common.RelayError
 	}
 
 	task := po.TaskWithData[po.SunoLyrics]{
-		Platform:   Service.Name(),
 		Action:     po.TaskActionLyrics,
 		TaskID:     sunoResp.ID,
 		Status:     readerStatus(lyricsResp.Status),
@@ -344,7 +368,6 @@ func loopFetchTask(taskID string) (bool, *common.RelayError) {
 	task := po.TaskWithData[po.SunoSongs]{
 		BaseModel:  oldTask.BaseModel,
 		TaskID:     oldTask.TaskID,
-		Platform:   oldTask.Platform,
 		Action:     oldTask.Action,
 		Status:     oldTask.Status,
 		FailReason: oldTask.FailReason,
@@ -402,6 +425,15 @@ func loopFetchTask(taskID string) (bool, *common.RelayError) {
 	return false, nil
 }
 
+// @Summary Fetch task
+// @Schemes
+// @Description
+// @Tags suno
+// @Accept json
+// @Produce json
+// @Param body body FetchReq true "fetch task ids"
+// @Success 200 {object} ginplus.DataResult{data=[]po.Task} "song tasks"
+// @Router /api/fetch [post]
 func Fetch(c *gin.Context) {
 	var params FetchReq
 	err := common.UnmarshalBodyReusable(c, &params)
@@ -419,6 +451,15 @@ func Fetch(c *gin.Context) {
 	c.JSON(200, ginplus.ApiRetSucc(tasks))
 }
 
+// @Summary Fetch task by id
+// @Schemes
+// @Description
+// @Tags suno
+// @Accept json
+// @Produce json
+// @Param id path string true "fetch single task by id"
+// @Success 200 {object} ginplus.DataResult{data=po.Task} "song task"
+// @Router /api/fetch/{id} [get]
 func FetchByID(c *gin.Context) {
 
 	id := c.Param("id")

@@ -9,7 +9,9 @@ type TaskData interface {
 	SunoSongs | SunoLyrics | json.RawMessage
 }
 
-type SunoSongs []SunoSong
+// Suno Song task data
+// @Description Suno Song task data
+type SunoSongs []SunoSong //@name SunoSongs
 
 type SunoSong struct {
 	ID                string       `json:"id"`

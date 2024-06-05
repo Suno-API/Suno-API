@@ -17,8 +17,8 @@ services:
       - ROTATE_LOGS=false
       - PPROF=false
       - DEBUG=false
-      - TEMPLATE_DIR=./template
-      - SUNO_CHAT_OPENAI_MODEL=gpt-4o
-      - SUNO_CHAT_OPENAI_BASE=https://one-api.bltcy.top
-      - SUNO_CHAT_OPENAI_KEY=sk-
+      - CHAT_TEMPLATE_DIR=./template
+      - CHAT_OPENAI_MODEL=gpt-4o
+      - CHAT_OPENAI_BASE=https://one-api.bltcy.top
+      - CHAT_OPENAI_KEY=sk-
 

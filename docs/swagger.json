@@ -4,7 +4,7 @@
         "contact": {}
     },
     "paths": {
-        "/api/account": {
+        "/suno/account": {
             "get": {
                 "consumes": [
                     "application/json"
@@ -38,7 +38,7 @@
                 }
             }
         },
-        "/api/fetch": {
+        "/suno/fetch": {
             "post": {
                 "consumes": [
                     "application/json"
@@ -86,7 +86,7 @@
                 }
             }
         },
-        "/api/fetch/{id}": {
+        "/suno/fetch/{id}": {
             "get": {
                 "consumes": [
                     "application/json"
@@ -129,7 +129,7 @@
                 }
             }
         },
-        "/api/submit/lyrics": {
+        "/suno/submit/lyrics": {
             "post": {
                 "consumes": [
                     "application/json"
@@ -174,7 +174,7 @@
                 }
             }
         },
-        "/api/submit/music": {
+        "/suno/submit/music": {
             "post": {
                 "consumes": [
                     "application/json"

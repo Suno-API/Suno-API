@@ -16,7 +16,7 @@ const docTemplate = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
-        "/api/account": {
+        "/suno/account": {
             "get": {
                 "consumes": [
                     "application/json"
@@ -50,7 +50,7 @@ const docTemplate = `{
                 }
             }
         },
-        "/api/fetch": {
+        "/suno/fetch": {
             "post": {
                 "consumes": [
                     "application/json"
@@ -98,7 +98,7 @@ const docTemplate = `{
                 }
             }
         },
-        "/api/fetch/{id}": {
+        "/suno/fetch/{id}": {
             "get": {
                 "consumes": [
                     "application/json"
@@ -141,7 +141,7 @@ const docTemplate = `{
                 }
             }
         },
-        "/api/submit/lyrics": {
+        "/suno/submit/lyrics": {
             "post": {
                 "consumes": [
                     "application/json"
@@ -186,7 +186,7 @@ const docTemplate = `{
                 }
             }
         },
-        "/api/submit/music": {
+        "/suno/submit/music": {
             "post": {
                 "consumes": [
                     "application/json"

@@ -111,7 +111,7 @@ definitions:
 info:
   contact: {}
 paths:
-  /api/account:
+  /suno/account:
     get:
       consumes:
       - application/json
@@ -130,7 +130,7 @@ paths:
       summary: Get Account config
       tags:
       - account
-  /api/fetch:
+  /suno/fetch:
     post:
       consumes:
       - application/json
@@ -158,7 +158,7 @@ paths:
       summary: Fetch task
       tags:
       - suno
-  /api/fetch/{id}:
+  /suno/fetch/{id}:
     get:
       consumes:
       - application/json
@@ -183,7 +183,7 @@ paths:
       summary: Fetch task by id
       tags:
       - suno
-  /api/submit/lyrics:
+  /suno/submit/lyrics:
     post:
       consumes:
       - application/json
@@ -209,7 +209,7 @@ paths:
       summary: Submit Suno lyrics task
       tags:
       - suno
-  /api/submit/music:
+  /suno/submit/music:
     post:
       consumes:
       - application/json

@@ -21,6 +21,7 @@ var Proxy = GetOrDefaultString("PROXY", "")
 var ChatTemplateDir = GetOrDefaultString("CHAT_TEMPLATE_DIR", "./template")
 
 var BaseUrl = GetOrDefaultString("BASE_URL", "https://studio-api.suno.ai")
+var ExchangeTokenUrl = GetOrDefaultString("EXCHANGE_TOKEN_URL", "https://clerk.suno.com/v1/client/sessions/%s/tokens?_clerk_js_version=4.73.2")
 var SessionID = GetOrDefaultString("SESSION_ID", "")
 var COOKIE = GetOrDefaultString("COOKIE", "")
 var ChatOpenaiModel = GetOrDefaultString("CHAT_OPENAI_MODEL", "gpt-4o")

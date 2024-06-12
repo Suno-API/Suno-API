@@ -16,6 +16,40 @@ const docTemplate = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
+        "/api/account": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "account"
+                ],
+                "summary": "Get Account config",
+                "responses": {
+                    "200": {
+                        "description": "song task",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/ginplus.DataResult"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/definitions/main.Account"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "/api/fetch": {
             "post": {
                 "consumes": [
@@ -211,6 +245,17 @@ const docTemplate = `{
                 }
             }
         },
+        "main.Account": {
+            "type": "object",
+            "properties": {
+                "certificate": {
+                    "$ref": "#/definitions/main.SunoCert"
+                },
+                "msg": {
+                    "type": "string"
+                }
+            }
+        },
         "main.FetchReq": {
             "type": "object",
             "properties": {
@@ -261,6 +306,39 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "title": {
+                    "type": "string"
+                }
+            }
+        },
+        "main.SunoCert": {
+            "type": "object",
+            "properties": {
+                "cookie": {
+                    "type": "string"
+                },
+                "credits_left": {
+                    "type": "integer"
+                },
+                "is_active": {
+                    "type": "boolean"
+                },
+                "jwt": {
+                    "type": "string"
+                },
+                "last_update": {
+                    "description": "最后更新时间，小于5秒，可以直接使用",
+                    "type": "integer"
+                },
+                "monthly_limit": {
+                    "type": "integer"
+                },
+                "monthly_usage": {
+                    "type": "integer"
+                },
+                "period": {
+                    "type": "string"
+                },
+                "session_id": {
                     "type": "string"
                 }
             }

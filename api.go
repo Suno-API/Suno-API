@@ -482,6 +482,14 @@ func FetchByID(c *gin.Context) {
 	c.JSON(200, ginplus.ApiRetSucc(tasks.Data))
 }
 
+// @Summary Get Account config
+// @Schemes
+// @Description
+// @Tags account
+// @Accept json
+// @Produce json
+// @Success 200 {object} ginplus.DataResult{data=Account} "song task"
+// @Router /api/account [get]
 func GetAccount(c *gin.Context) {
 	err := getCredits(AccountInst)
 	if err != nil {

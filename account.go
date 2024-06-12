@@ -48,10 +48,6 @@ func accountKeepAlive(acc *Account) error {
 	return nil
 }
 
-const (
-	exchangeTokenURL = "https://clerk.suno.com/v1/client/sessions/%s/tokens?_clerk_js_version=4.72.0-snapshot.vc141245"
-)
-
 func updateToken(a *Account) error {
 	if a.Certificate.Cookie == "" {
 		return fmt.Errorf("cookie 不可为空")
@@ -59,7 +55,7 @@ func updateToken(a *Account) error {
 	if a.Certificate.SessionID == "" {
 		return fmt.Errorf("session_id 不可为空")
 	}
-	exchangeURL := fmt.Sprintf(exchangeTokenURL, a.Certificate.SessionID)
+	exchangeURL := fmt.Sprintf(common.ExchangeTokenUrl, a.Certificate.SessionID)
 	req, err := http.NewRequest("POST", exchangeURL, nil)
 	if err != nil {
 		return err
@@ -70,7 +66,7 @@ func updateToken(a *Account) error {
 	}
 
 	req.Header.Set("cookie", a.Certificate.Cookie)
-
+	req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
 	resp, err := TlsHTTPClient.Do(req)
 	if err != nil {
 		return err

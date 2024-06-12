@@ -26,9 +26,9 @@ func ChatCompletions(c *gin.Context) {
 		return
 	}
 
-	chatSubmitTemp := common.Templates["suno_chat_stream_submit"]
-	chatTickTemp := common.Templates["suno_chat_stream_tick"]
-	chatRespTemp := common.Templates["suno_chat_resp"]
+	chatSubmitTemp := common.Templates["chat_stream_submit"]
+	chatTickTemp := common.Templates["chat_stream_tick"]
+	chatRespTemp := common.Templates["chat_resp"]
 
 	var requestData GeneralOpenAIRequest
 	err = c.ShouldBindJSON(&requestData)
@@ -162,14 +162,14 @@ func ChatCompletions(c *gin.Context) {
 
 func checkChatConfig() error {
 	if common.ChatOpenaiApiBASE == "" {
-		return fmt.Errorf("SUNO_CHAT_OPENAI_BASE is empty")
+		return fmt.Errorf("CHAT_OPENAI_BASE is empty")
 	}
 	if common.ChatOpenaiApiKey == "" {
-		return fmt.Errorf("SUNO_CHAT_OPENAI_KEY is empty")
+		return fmt.Errorf("CHAT_OPENAI_KEY is empty")
 	}
-	_, ok := common.Templates["suno_chat_resp"]
+	_, ok := common.Templates["chat_resp"]
 	if !ok {
-		return fmt.Errorf("suno_chat_resp template not found")
+		return fmt.Errorf("chat_resp template not found")
 	}
 	return nil
 }

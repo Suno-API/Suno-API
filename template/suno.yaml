@@ -1,9 +1,9 @@
-suno_chat_stream_submit: |
+chat_stream_submit: |
   请求成功，正在生成歌曲，请稍等片刻...
   
-suno_chat_stream_tick: 🎵
+chat_stream_tick: 🎵
 
-suno_chat_resp: |
+chat_resp: |
   ***
   {{ $first := (index .Data 0)}}
   ###🎵 歌曲名： {{ $first.Title }}

@@ -7,6 +7,13 @@ definitions:
       message:
         type: string
     type: object
+  main.Account:
+    properties:
+      certificate:
+        $ref: '#/definitions/main.SunoCert'
+      msg:
+        type: string
+    type: object
   main.FetchReq:
     properties:
       action:
@@ -40,6 +47,28 @@ definitions:
       task_id:
         type: string
       title:
+        type: string
+    type: object
+  main.SunoCert:
+    properties:
+      cookie:
+        type: string
+      credits_left:
+        type: integer
+      is_active:
+        type: boolean
+      jwt:
+        type: string
+      last_update:
+        description: 最后更新时间，小于5秒，可以直接使用
+        type: integer
+      monthly_limit:
+        type: integer
+      monthly_usage:
+        type: integer
+      period:
+        type: string
+      session_id:
         type: string
     type: object
   po.Task:
@@ -82,6 +111,25 @@ definitions:
 info:
   contact: {}
 paths:
+  /api/account:
+    get:
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: song task
+          schema:
+            allOf:
+            - $ref: '#/definitions/ginplus.DataResult'
+            - properties:
+                data:
+                  $ref: '#/definitions/main.Account'
+              type: object
+      summary: Get Account config
+      tags:
+      - account
   /api/fetch:
     post:
       consumes:

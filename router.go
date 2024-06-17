@@ -4,6 +4,7 @@ import (
 	"github.com/gin-gonic/gin"
 	swaggerfiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
+	docs "suno-api/docs"
 )
 
 func RegisterRouter(r *gin.Engine) {
@@ -12,7 +13,7 @@ func RegisterRouter(r *gin.Engine) {
 			"message": "pong",
 		})
 	})
-
+	docs.SwaggerInfo.BasePath = "/api"
 	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerfiles.Handler))
 
 	apiRouter := r.Group("/api")

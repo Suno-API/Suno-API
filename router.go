@@ -16,15 +16,14 @@ func RegisterRouter(r *gin.Engine) {
 	docs.SwaggerInfo.BasePath = "/api"
 	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerfiles.Handler))
 
-	apiRouter := r.Group("/api")
+	apiRouter := r.Group("/suno")
 	{
 		apiRouter.POST("/submit/:action", Submit)
 		apiRouter.GET("/fetch/:id", FetchByID)
 		apiRouter.POST("/fetch", Fetch)
 
 		apiRouter.GET("/account", GetAccount)
-
-		// chat
-		apiRouter.POST("/v1/chat/completions", ChatCompletions)
 	}
+	// chat
+	r.POST("/v1/chat/completions", ChatCompletions)
 }

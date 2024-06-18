@@ -13,7 +13,7 @@ func RegisterRouter(r *gin.Engine) {
 			"message": "pong",
 		})
 	})
-	docs.SwaggerInfo.BasePath = "/api"
+	docs.SwaggerInfo.BasePath = "/"
 	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerfiles.Handler))
 
 	apiRouter := r.Group("/suno")

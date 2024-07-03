@@ -2,7 +2,9 @@
 [中文](./README_ZH.md)
 
 # Good news
-I provide the Suno AI API, no deployment is required, no subscription to suno is required. Lower price, more convenient to use the suno API. Website: https://api.bltcy.ai
+I provide the Suno AI API, no deployment is required, no subscription to suno is required. Lower price, more convenient to use the suno API.  
+#### Website: https://api.bltcy.ai
+
 
 ## Disclaimer
 - This project is released on GitHub under the MIT license, free and open-source for educational purposes.
@@ -15,6 +17,7 @@ I provide the Suno AI API, no deployment is required, no subscription to suno is
 - [x] Supports custom formatting of OpenAI Chat responses, based on Go Template syntax.
 - [x] Compatible with front-end projects like chat-next-web.
 - [x] Simplifies deployment process, supports docker-compose and docker.
+- [x] Supput New API [Docs](Suno.md)
 
 ## API Docs
 
@@ -28,23 +31,24 @@ Initially obtain these from the browser; later stages will maintain automatic vi
 ![cookie](./docs/images/image1.png)
 
 ### Env Environment Variables
-| Environment Variable | Description | Default Value |
-| --- | --- | --- |
-| SESSION_ID | Session ID from the image above | None |
-| COOKIE | Cookie from the image above | None |
-| BASE_URL | SUNO official API URL | https://studio-api.suno.ai |
-| PROXY | HTTP Proxy | None |
-| SQL_DSN | MySQL DSN, if empty, SQLite is used | None |
-| PORT | Port to expose | 8000 |
-| ROTATE_LOGS | Whether to rotate logs daily | Yes |
-| LOG_DIR | Path for log output | ./logs |
-| DEBUG | Whether to enable debug logs | No |
+| Environment Variable | Description                                           | Default Value |
+| --- |-------------------------------------------------------| --- |
+| SESSION_ID | Session ID from the image above                       | None |
+| COOKIE | Cookie from the image above                           | None |
+| BASE_URL | SUNO official API URL                                 | https://studio-api.suno.ai |
+| PROXY | HTTP Proxy                                            | None |
+| SECRET_TOKEN | Suno API seurity http header Bearer token             | None                                           |
+| SQL_DSN | MySQL DSN, if empty, SQLite is used                   | None |
+| PORT | Port to expose                                        | 8000 |
+| ROTATE_LOGS | Whether to rotate logs daily                          | Yes |
+| LOG_DIR | Path for log output                                   | ./logs |
+| DEBUG | Whether to enable debug logs                          | No |
 | PPROF | Enable Pprof for performance analysis, uses port 8005 | No |
-| CHAT_OPENAI_BASE | OpenAI API endpoint | https://api.openai.com |
-| CHAT_OPENAI_KEY | OpenAI API key | sk-xxxxx |
-| CHAT_OPENAI_MODEL | Default model | gpt-4o |
-| CHAT_TIME_OUT | Chat request timeout | 600 seconds |
-| CHAT_TEMPLATE_DIR | Directory for chat templates | ./template |
+| CHAT_OPENAI_BASE | OpenAI API endpoint                                   | https://api.openai.com |
+| CHAT_OPENAI_KEY | OpenAI API key                                        | sk-xxxxx |
+| CHAT_OPENAI_MODEL | Default model                                         | gpt-4o |
+| CHAT_TIME_OUT | Chat request timeout                                  | 600 seconds |
+| CHAT_TEMPLATE_DIR | Directory for chat templates                          | ./template |
 
 ### Docker Deployment
 Step-by-step guide on how to run a Docker container with specific environment variables and port mappings. Sensitive details like SQL names, passwords, and IP addresses are replaced with placeholders for this guide.
@@ -75,6 +79,7 @@ services:
       - ./template:/template
     environment:
       - PORT=8000
+      - SECRET_TOKEN=123456
       - SQL_DSN=root:123456@tcp(localhost:3306)/sunoapi
       - TZ=Asia/Shanghai
       - ROTATE_LOGS=false

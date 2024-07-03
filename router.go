@@ -5,6 +5,7 @@ import (
 	swaggerfiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
 	docs "suno-api/docs"
+	"suno-api/middleware"
 )
 
 func RegisterRouter(r *gin.Engine) {
@@ -16,7 +17,8 @@ func RegisterRouter(r *gin.Engine) {
 	docs.SwaggerInfo.BasePath = "/"
 	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerfiles.Handler))
 
-	apiRouter := r.Group("/suno")
+	r.Use(middleware.CORS())
+	apiRouter := r.Group("/suno", middleware.SecretAuth())
 	{
 		apiRouter.POST("/submit/:action", Submit)
 		apiRouter.GET("/fetch/:id", FetchByID)

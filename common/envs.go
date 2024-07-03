@@ -16,6 +16,7 @@ var RotateLogs = os.Getenv("ROTATE_LOGS") == "true"
 var Port = GetOrDefaultString("PORT", "8000")
 
 var SQLitePath = GetOrDefaultString("SQLITE_PATH", "api.db?_busy_timeout=5000")
+var SecretToken = GetOrDefaultString("SECRET_TOKEN", "")
 
 var Proxy = GetOrDefaultString("PROXY", "")
 var ChatTemplateDir = GetOrDefaultString("CHAT_TEMPLATE_DIR", "./template")

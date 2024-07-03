@@ -16,6 +16,7 @@
 - [x] 支持自定义 OpenAI Chat 返回内容格式，基于 Go Template 语法
 - [x] 适配 chat-next-web 等前端项目
 - [x] 简化部署流程，支持 docker-compose、docker
+- [x] 支持 New API [对接文档](Suno.md)
 
 
 ## API 文档
@@ -35,6 +36,7 @@ http://localhost:8000/swagger/index.html
 | COOKIE | 上图获取的 suno cookie             | 空                          | 
 | BASE_URL | SUNO 官方请求 API URL<br/>        | https://studio-api.suno.ai | 
 | PROXY | Http 代理                       | 空                          | 
+| SECRET_TOKEN | Luma API 接口安全 Header Bearer token，强烈希望配置                 |  空                        |
 | SQL_DSN | Mysql DSN，为空时使用sqlite         |   空                         | 
 | PORT | 开放端口                          | 8000                       | 
 | ROTATE_LOGS | 日志是否按天轮转                      | 是                          | 

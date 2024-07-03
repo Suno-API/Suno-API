@@ -5,6 +5,7 @@ go 1.21.6
 require (
 	github.com/bogdanfinn/fhttp v0.5.28
 	github.com/bogdanfinn/tls-client v1.7.5
+	github.com/gin-contrib/cors v1.7.2
 	github.com/gin-contrib/zap v1.1.3
 	github.com/gin-gonic/gin v1.10.0
 	github.com/google/uuid v1.6.0

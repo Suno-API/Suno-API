@@ -16,7 +16,7 @@
 - [x] 支持自定义 OpenAI Chat 返回内容格式，基于 Go Template 语法
 - [x] 适配 chat-next-web 等前端项目
 - [x] 简化部署流程，支持 docker-compose、docker
-- [x] 支持 New API [对接文档](Suno.md)
+- [x] 支持 [New API](https://github.com/Calcium-Ion/new-api) [对接文档](Suno.md)
 
 
 ## API 文档

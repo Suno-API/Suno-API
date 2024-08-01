@@ -17,7 +17,7 @@ I provide the Suno AI API, no deployment is required, no subscription to suno is
 - [x] Supports custom formatting of OpenAI Chat responses, based on Go Template syntax.
 - [x] Compatible with front-end projects like chat-next-web.
 - [x] Simplifies deployment process, supports docker-compose and docker.
-- [x] Supput New API [Docs](Suno.md)
+- [x] Supput [New API](https://github.com/Calcium-Ion/new-api) [Docs](Suno.md)
 
 ## API Docs
 

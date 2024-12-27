@@ -2,7 +2,10 @@
 #  Suno API
 
 # 好消息
-我提供 SUNO API，不需要任何部署，不需要购买 SUNO 账户。更低的价格，更好的体验。
+我提供 SUNO API，不需要任何部署，不需要购买 SUNO 账户。更低的价格，更好的体验。 
+
+
+无需担心封号、验证码和水印问题
 网址: https://api.bltcy.ai
 
 ## Disclaimer

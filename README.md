@@ -2,7 +2,8 @@
 [中文](./README_ZH.md)
 
 # Good news
-I provide the Suno AI API, no deployment is required, no subscription to suno is required. Lower price, more convenient to use the suno API.  
+I provide the Suno AI API, no deployment is required, no subscription to suno is required. Lower price, more convenient to use the suno API. 
+No need to worry about watermarks and Captcha issues
 #### Website: https://api.bltcy.ai
 
 
